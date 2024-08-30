@@ -1,0 +1,290 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    align-items: center;
+
+    background-color: rgb(31, 31, 31);
+    color: white;
+}
+
+/* ===== Titles ====*/
+
+#titleContainer{
+    margin-top: 100px;
+    width: 800px;
+    height: 200px;
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+    border: 1px white solid;
+    border-radius: 10px;
+
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#subtitle{
+    font-size: 50px !important;
+    font-weight: normal !important;
+}
+
+/* ===== Keyboard ====*/
+
+#keyboard{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    animation: fadeIn ease-in-out 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#spacebar{
+    align-self: center;
+    width: 800px !important;
+    height: 80px !important;
+    margin-top: 15px !important;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.key{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 120px;
+    border: 2px white solid;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 40px;
+
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, red 50%) top;
+    background-size: 200% 200%;
+    transition: 0s ease-out;
+}
+
+/* ===== Key States ====*/
+
+.selected{
+    background-position: bottom !important;
+    
+    animation: selectedKeyAnim ease-in-out 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.pressed{
+    transform: translateY(12px) !important;
+}
+
+/* ===== Stats ====*/
+
+#statsContainer{
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    width: 500px;
+    font-size: 25px;
+
+    border-left: 1px white solid;
+    border-right: 1px white solid;
+}
+
+.statsSubContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ===== Snackbar ====*/
+  
+#snackbar {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: #333; 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+    font-size: 25px;
+}
+
+/* ===== Other ====*/
+
+#helpHint{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 50px;
+    font-size: 35px;
+    color: rgba(255, 255, 255, 0.200);
+}
+
+#kittyImg{
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+    position: absolute;
+    bottom: 50%;
+    right: 0;
+    transform: translatey(50%);
+}
+
+/* ==== Animations ====*/
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes selectedKeyAnim {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+     }
+}
+
+@keyframes correctKeyAnim {
+    0% {
+        border-color: white;
+    }
+    50%{
+        border-color: green;
+    }
+    100% {
+        border-color: white;
+     }
+}
+
+@keyframes incorrectKeyAnim {
+    0% { transform: translate(1px, 1px) rotate(0deg); 
+        border-color: white;}
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg);
+        border-color: red; }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg);
+        border-color: white; }
+}
+
+@keyframes correctKeyAnimLight {
+    0% {
+        border-color: black;
+    }
+    50%{
+        border-color: green;
+    }
+    100% {
+        border-color: black;
+     }
+}
+
+@keyframes incorrectKeyAnimLight {
+    0% { transform: translate(1px, 1px) rotate(0deg); 
+        border-color: black;}
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg);
+        border-color: red; }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg);
+        border-color: black; }
+}
+
+@keyframes scoreAdded {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+     }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+     }
+}
